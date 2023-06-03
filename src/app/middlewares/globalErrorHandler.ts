@@ -1,12 +1,13 @@
-import { NextFunction, Request, Response } from 'express'
+import { ErrorRequestHandler, NextFunction, Request, Response } from 'express'
+import { Error } from 'mongoose'
 import { error } from 'winston'
 import config from '../../config'
 import ApiError from '../../errors/ApiError'
-import handleValidationError from '../../errors/handleValidationerror'
+import handleValidationError from '../../errors/handleValidationError'
 import { IGenericErrorMessage } from '../../interfaces/error'
 
-const globalErrorHandler = (
-  err: Error,
+const globalErrorHandler: ErrorRequestHandler = (
+  err,
   req: Request,
   res: Response,
   next: NextFunction
