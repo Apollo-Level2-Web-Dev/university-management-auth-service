@@ -13,9 +13,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/api/v1/users/', usersRouter)
 
 // //Testing
-app.get('/', async (req: Request, res: Response, next: NextFunction) => {
-  Promise.reject(new Error('Unhandled Promise Rejection'))
-})
+// app.get('/', (req: Request, res: Response, next: NextFunction) => {
+//   // throw new ApiError(400, 'Ore Baba Error ')
+//   // next('Ore Baba Error') // Error
+// })
 
 //global error handler
 app.use(globalErrorHandler)

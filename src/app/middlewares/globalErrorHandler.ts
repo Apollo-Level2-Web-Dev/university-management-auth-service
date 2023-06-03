@@ -1,29 +1,23 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable no-console */
 import { ErrorRequestHandler, NextFunction, Request, Response } from 'express'
 import { Error } from 'mongoose'
+import { error } from 'winston'
 import config from '../../config'
 import ApiError from '../../errors/ApiError'
 import handleValidationError from '../../errors/handleValidationError'
 import { IGenericErrorMessage } from '../../interfaces/error'
-import { errorlogger } from '../../shared/logger'
 
 const globalErrorHandler: ErrorRequestHandler = (
-  error,
+  err,
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  config.env === 'development'
-    ? console.log('🐱‍🏍 globalErrorHandler ~', error)
-    : errorlogger.error('🐱‍🏍 globalErrorHandler ~', error)
-
   let statusCode = 500
   let message = 'Something went wrong !'
   let errorMessages: IGenericErrorMessage[] = []
 
-  if (error?.name === 'ValidationError') {
-    const simplifiedError = handleValidationError(error)
+  if (err?.name === 'ValidationError') {
+    const simplifiedError = handleValidationError(err)
     statusCode = simplifiedError.statusCode
     message = simplifiedError.message
     errorMessages = simplifiedError.errorMessages
@@ -54,7 +48,7 @@ const globalErrorHandler: ErrorRequestHandler = (
     success: false,
     message,
     errorMessages,
-    stack: config.env !== 'production' ? error?.stack : undefined,
+    stack: config.env !== 'production' ? err?.stack : undefined,
   })
 
   next()
