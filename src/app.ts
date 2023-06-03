@@ -1,7 +1,8 @@
 import cors from 'cors'
 import express, { Application } from 'express'
 import globalErrorHandler from './app/middlewares/globalErrorHandler'
-import usersRouter from './app/modules/users/users.route'
+import { UserRoutes } from './app/modules/users/user.route'
+
 const app: Application = express()
 
 app.use(cors())
@@ -10,9 +11,9 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.use('/api/v1/users/', usersRouter)
+app.use('/api/v1/users/', UserRoutes)
 
-// //Testing
+//Testing
 // app.get('/', (req: Request, res: Response, next: NextFunction) => {
 //   // throw new ApiError(400, 'Ore Baba Error ')
 //   // next('Ore Baba Error') // Error
