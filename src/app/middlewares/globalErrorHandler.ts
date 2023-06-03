@@ -6,7 +6,7 @@ import handleValidationError from '../../errors/handleValidationerror'
 import { IGenericErrorMessage } from '../../interfaces/error'
 
 const globalErrorHandler = (
-  err,
+  err: Error,
   req: Request,
   res: Response,
   next: NextFunction
