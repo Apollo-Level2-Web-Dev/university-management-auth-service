@@ -149,6 +149,21 @@
             "date": 1686241456628,
             "name": "H:\\next-level-development\\university-management-auth-service\\logs\\winston\\errors\\phu-2023-08-06-22-error.log",
             "hash": "a57ffd549b46f49552301b048c6ff1bdee38bd46e1a2ba63bb936e6d19287e76"
+        },
+        {
+            "date": 1686244785669,
+            "name": "H:\\next-level-development\\university-management-auth-service\\logs\\winston\\errors\\phu-2023-08-06-23-error.log",
+            "hash": "8096f54e2cdaccdf9910986ae12a8bf55fe75085ba3e0f8ff3bf34851e842347"
+        },
+        {
+            "date": 1686248367217,
+            "name": "H:\\next-level-development\\university-management-auth-service\\logs\\winston\\errors\\phu-2023-09-06-00-error.log",
+            "hash": "9776a00d59ef588e351cf749d070f086b34e262150d905e4e79f0fa2d6cd1096"
+        },
+        {
+            "date": 1686252268829,
+            "name": "H:\\next-level-development\\university-management-auth-service\\logs\\winston\\errors\\phu-2023-09-06-01-error.log",
+            "hash": "6da4ce1cbc0870f02c15b991df3dac7837121180820cc9e3f93f6fcf65afb5d5"
         }
     ],
     "hashType": "sha256"
