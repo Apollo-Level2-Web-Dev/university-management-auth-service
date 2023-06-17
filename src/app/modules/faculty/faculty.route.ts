@@ -10,7 +10,7 @@ router.get('/', FacultyController.getAllFaculties);
 
 router.patch(
   '/:id',
-  validateRequest(FacultyValidation.updateFaculty),
+  validateRequest(FacultyValidation.updateFacultyZodSchema),
   FacultyController.updateFaculty
 );
 

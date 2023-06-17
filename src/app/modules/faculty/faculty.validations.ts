@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const updateFaculty = z.object({
+const updateFacultyZodSchema = z.object({
   body: z.object({
     name: z.object({
       firstName: z.string().optional(),
@@ -21,5 +21,5 @@ const updateFaculty = z.object({
 });
 
 export const FacultyValidation = {
-  updateFaculty,
+  updateFacultyZodSchema,
 };

@@ -20,7 +20,7 @@ const getAllFaculties = catchAsync(async (req: Request, res: Response) => {
   sendResponse<IFaculty[]>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'facultys retrieved successfully !',
+    message: 'faculties retrieved successfully !',
     meta: result.meta,
     data: result.data,
   });
