@@ -3,9 +3,13 @@ import express, { Application, NextFunction, Request, Response } from 'express';
 import httpStatus from 'http-status';
 import globalErrorHandler from './app/middlewares/globalErrorHandler';
 import routes from './app/routes';
+
+import cookieParser from 'cookie-parser';
+
 const app: Application = express();
 
 app.use(cors());
+app.use(cookieParser());
 
 //parser
 app.use(express.json());

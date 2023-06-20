@@ -123,7 +123,7 @@ const deleteStudent = async (id: string): Promise<IStudent | null> => {
   const isExist = await Student.findOne({ id });
 
   if (!isExist) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Faculty not found !');
+    throw new ApiError(httpStatus.NOT_FOUND, 'Student not found !');
   }
 
   const session = await mongoose.startSession();
