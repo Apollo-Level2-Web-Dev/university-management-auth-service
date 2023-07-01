@@ -94,3 +94,5 @@ This is the documentation for the Authentication Service component of the Univer
 - `POST /auth/login`
 - `POST /auth/change-password`
 - `POST /auth/refresh-token`
+
+[Postman Documentation](https://documenter.getpostman.com/view/26682150/2s93zB72V9#acc25f08-de78-478b-809d-837ce239d2b3)
