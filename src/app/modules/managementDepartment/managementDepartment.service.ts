@@ -16,16 +16,24 @@ const createDepartment = async (
   return result;
 };
 
+const getSingleDepartment = async (
+  id: string
+): Promise<IManagementDepartment | null> => {
+  const result = await ManagementDepartment.findById(id);
+  return result;
+};
+
 const getAllDepartments = async (
   filters: IManagementDepartmentFilters,
   paginationOptions: IPaginationOptions
 ): Promise<IGenericResponse<IManagementDepartment[]>> => {
+  // Extract searchTerm to implement search query
   const { searchTerm, ...filtersData } = filters;
   const { page, limit, skip, sortBy, sortOrder } =
     paginationHelpers.calculatePagination(paginationOptions);
 
   const andConditions = [];
-
+  // Search needs $or for searching in specified fields
   if (searchTerm) {
     andConditions.push({
       $or: managementDepartmentSearchableFields.map(field => ({
@@ -36,7 +44,7 @@ const getAllDepartments = async (
       })),
     });
   }
-
+  // Filters needs $and to fullfill all the conditions
   if (Object.keys(filtersData).length) {
     andConditions.push({
       $and: Object.entries(filtersData).map(([field, value]) => ({
@@ -45,8 +53,8 @@ const getAllDepartments = async (
     });
   }
 
+  // Dynamic  Sort needs  field to  do sorting
   const sortConditions: { [key: string]: SortOrder } = {};
-
   if (sortBy && sortOrder) {
     sortConditions[sortBy] = sortOrder;
   }
@@ -68,13 +76,6 @@ const getAllDepartments = async (
     },
     data: result,
   };
-};
-
-const getSingleDepartment = async (
-  id: string
-): Promise<IManagementDepartment | null> => {
-  const result = await ManagementDepartment.findById(id);
-  return result;
 };
 
 const updateDepartment = async (

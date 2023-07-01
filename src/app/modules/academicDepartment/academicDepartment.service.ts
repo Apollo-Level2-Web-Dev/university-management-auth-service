@@ -9,62 +9,6 @@ import {
 } from './academicDepartment.interfaces';
 import { AcademicDepartment } from './academicDepartment.model';
 
-const getAllDepartments = async (
-  filters: IAcademicDepartmentFilters,
-  paginationOptions: IPaginationOptions
-): Promise<IGenericResponse<IAcademicDepartment[]>> => {
-  const { limit, page, skip, sortBy, sortOrder } =
-    paginationHelpers.calculatePagination(paginationOptions);
-
-  const { searchTerm, ...filtersData } = filters;
-
-  const andConditions = [];
-
-  if (searchTerm) {
-    andConditions.push({
-      $or: academicDepartmentSearchableFields.map(field => ({
-        [field]: {
-          $regex: searchTerm,
-          $paginationOptions: 'i',
-        },
-      })),
-    });
-  }
-
-  if (Object.keys(filtersData).length) {
-    andConditions.push({
-      $and: Object.entries(filtersData).map(([field, value]) => ({
-        [field]: value,
-      })),
-    });
-  }
-
-  const sortConditions: { [key: string]: SortOrder } = {};
-
-  if (sortBy && sortOrder) {
-    sortConditions[sortBy] = sortOrder;
-  }
-  const whereConditions =
-    andConditions.length > 0 ? { $and: andConditions } : {};
-
-  const result = await AcademicDepartment.find(whereConditions)
-    .populate('academicFaculty')
-    .sort(sortConditions)
-    .skip(skip)
-    .limit(limit);
-
-  const total = await AcademicDepartment.countDocuments();
-
-  return {
-    meta: {
-      page,
-      limit,
-      total,
-    },
-    data: result,
-  };
-};
-
 const createDepartment = async (
   payload: IAcademicDepartment
 ): Promise<IAcademicDepartment | null> => {
@@ -80,7 +24,69 @@ const getSingleDepartment = async (
   const result = await AcademicDepartment.findById(id).populate(
     'academicFaculty'
   );
+
   return result;
+};
+
+const getAllDepartments = async (
+  filters: IAcademicDepartmentFilters,
+  paginationOptions: IPaginationOptions
+): Promise<IGenericResponse<IAcademicDepartment[]>> => {
+  const { limit, page, skip, sortBy, sortOrder } =
+    paginationHelpers.calculatePagination(paginationOptions);
+
+  // Extract searchTerm to implement search query
+  const { searchTerm, ...filtersData } = filters;
+
+  const andConditions = [];
+
+  // Search needs $or for searching in specified fields
+  if (searchTerm) {
+    andConditions.push({
+      $or: academicDepartmentSearchableFields.map(field => ({
+        [field]: {
+          $regex: searchTerm,
+          $paginationOptions: 'i',
+        },
+      })),
+    });
+  }
+
+  // Filters needs $and to fullfill all the conditions
+  if (Object.keys(filtersData).length) {
+    andConditions.push({
+      $and: Object.entries(filtersData).map(([field, value]) => ({
+        [field]: value,
+      })),
+    });
+  }
+
+  // Dynamic  Sort needs  field to  do sorting
+  const sortConditions: { [key: string]: SortOrder } = {};
+  if (sortBy && sortOrder) {
+    sortConditions[sortBy] = sortOrder;
+  }
+
+  // If there is no condition , put {} to give all data
+  const whereConditions =
+    andConditions.length > 0 ? { $and: andConditions } : {};
+
+  const result = await AcademicDepartment.find(whereConditions)
+    .populate('academicFaculty')
+    .sort(sortConditions)
+    .skip(skip)
+    .limit(limit);
+
+  const total = await AcademicDepartment.countDocuments(whereConditions);
+
+  return {
+    meta: {
+      page,
+      limit,
+      total,
+    },
+    data: result,
+  };
 };
 
 const updateDepartment = async (
@@ -94,6 +100,7 @@ const updateDepartment = async (
       new: true,
     }
   ).populate('academicFaculty');
+
   return result;
 };
 
@@ -105,9 +112,9 @@ const deleteDepartment = async (
 };
 
 export const AcademicDepartmentService = {
-  getAllDepartments,
+  createDepartment,
   getSingleDepartment,
+  getAllDepartments,
   updateDepartment,
   deleteDepartment,
-  createDepartment,
 };

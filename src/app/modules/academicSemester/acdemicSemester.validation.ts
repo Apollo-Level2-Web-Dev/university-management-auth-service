@@ -23,8 +23,6 @@ const createAcademicSemesterZodSchema = z.object({
   }),
 });
 
-///  Ensure 1: Route Level : Update -->  Give me title and code both , neither
-
 const updateAcademicSemesterZodSchema = z
   .object({
     body: z.object({

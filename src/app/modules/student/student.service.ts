@@ -15,12 +15,13 @@ const getAllStudents = async (
   filters: IStudentFilters,
   paginationOptions: IPaginationOptions
 ): Promise<IGenericResponse<IStudent[]>> => {
+  // Extract searchTerm to implement search query
   const { searchTerm, ...filtersData } = filters;
   const { page, limit, skip, sortBy, sortOrder } =
     paginationHelpers.calculatePagination(paginationOptions);
 
   const andConditions = [];
-
+  // Search needs $or for searching in specified fields
   if (searchTerm) {
     andConditions.push({
       $or: studentSearchableFields.map(field => ({
@@ -31,7 +32,7 @@ const getAllStudents = async (
       })),
     });
   }
-
+  // Filters needs $and to fullfill all the conditions
   if (Object.keys(filtersData).length) {
     andConditions.push({
       $and: Object.entries(filtersData).map(([field, value]) => ({
@@ -40,8 +41,8 @@ const getAllStudents = async (
     });
   }
 
+  // Dynamic  Sort needs  field to  do sorting
   const sortConditions: { [key: string]: SortOrder } = {};
-
   if (sortBy && sortOrder) {
     sortConditions[sortBy] = sortOrder;
   }
@@ -119,7 +120,7 @@ const updateStudent = async (
 };
 
 const deleteStudent = async (id: string): Promise<IStudent | null> => {
-  // check if the faculty is exist
+  // check if the student is exist
   const isExist = await Student.findOne({ id });
 
   if (!isExist) {

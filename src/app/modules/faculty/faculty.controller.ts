@@ -8,6 +8,18 @@ import { facultyFilterableFields } from './faculty.constant';
 import { IFaculty } from './faculty.interface';
 import { FacultyService } from './faculty.service';
 
+const getSingleFaculty = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const result = await FacultyService.getSingleFaculty(id);
+
+  sendResponse<IFaculty>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Faculty fetched successfully !',
+    data: result,
+  });
+});
+
 const getAllFaculties = catchAsync(async (req: Request, res: Response) => {
   const filters = pick(req.query, facultyFilterableFields);
   const paginationOptions = pick(req.query, paginationFields);
@@ -20,21 +32,9 @@ const getAllFaculties = catchAsync(async (req: Request, res: Response) => {
   sendResponse<IFaculty[]>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'faculties retrieved successfully !',
+    message: 'Faculties fetched successfully !',
     meta: result.meta,
     data: result.data,
-  });
-});
-
-const getSingleFaculty = catchAsync(async (req: Request, res: Response) => {
-  const id = req.params.id;
-  const result = await FacultyService.getSingleFaculty(id);
-
-  sendResponse<IFaculty>(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: 'faculty retrieved successfully !',
-    data: result,
   });
 });
 
@@ -46,7 +46,7 @@ const updateFaculty = catchAsync(async (req: Request, res: Response) => {
   sendResponse<IFaculty>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'faculty updated successfully !',
+    message: 'Faculty updated successfully !',
     data: result,
   });
 });
@@ -58,14 +58,14 @@ const deleteFaculty = catchAsync(async (req: Request, res: Response) => {
   sendResponse<IFaculty>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'faculty deleted successfully !',
+    message: 'Faculty deleted successfully !',
     data: result,
   });
 });
 
 export const FacultyController = {
-  getAllFaculties,
   getSingleFaculty,
+  getAllFaculties,
   updateFaculty,
   deleteFaculty,
 };

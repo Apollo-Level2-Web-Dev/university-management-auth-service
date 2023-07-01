@@ -12,15 +12,26 @@ import { facultySearchableFields } from './faculty.constant';
 import { IFaculty, IFacultyFilters } from './faculty.interface';
 import { Faculty } from './faculty.model';
 
+const getSingleFaculty = async (id: string): Promise<IFaculty | null> => {
+  const result = await Faculty.findOne({ id })
+    .populate('academicDepartment')
+    .populate('academicFaculty');
+
+  return result;
+};
+
 const getAllFaculties = async (
   filters: IFacultyFilters,
   paginationOptions: IPaginationOptions
 ): Promise<IGenericResponse<IFaculty[]>> => {
+  // Extract searchTerm to implement search query
   const { searchTerm, ...filtersData } = filters;
   const { page, limit, skip, sortBy, sortOrder } =
     paginationHelpers.calculatePagination(paginationOptions);
+
   const andConditions = [];
 
+  // Search needs $or for searching in specified fields
   if (searchTerm) {
     andConditions.push({
       $or: facultySearchableFields.map(field => ({
@@ -31,7 +42,7 @@ const getAllFaculties = async (
       })),
     });
   }
-
+  // Filters needs $and to fullfill all the conditions
   if (Object.keys(filtersData).length) {
     andConditions.push({
       $and: Object.entries(filtersData).map(([field, value]) => ({
@@ -40,8 +51,8 @@ const getAllFaculties = async (
     });
   }
 
+  // Dynamic  Sort needs  field to  do sorting
   const sortConditions: { [key: string]: SortOrder } = {};
-
   if (sortBy && sortOrder) {
     sortConditions[sortBy] = sortOrder;
   }
@@ -65,14 +76,6 @@ const getAllFaculties = async (
     },
     data: result,
   };
-};
-
-const getSingleFaculty = async (id: string): Promise<IFaculty | null> => {
-  const result = await Faculty.findOne({ id })
-    .populate('academicDepartment')
-    .populate('academicFaculty');
-
-  return result;
 };
 
 const updateFaculty = async (
@@ -131,8 +134,8 @@ const deleteFaculty = async (id: string): Promise<IFaculty | null> => {
 };
 
 export const FacultyService = {
-  getAllFaculties,
   getSingleFaculty,
+  getAllFaculties,
   updateFaculty,
   deleteFaculty,
 };
