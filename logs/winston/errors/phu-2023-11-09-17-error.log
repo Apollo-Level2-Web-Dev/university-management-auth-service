@@ -1,0 +1,2 @@
+Mon Sep 11 2023 17:47:7 } [PH] error: Failed to connect database Invalid scheme, expected connection string to start with "mongodb://" or "mongodb+srv://"
+Mon Sep 11 2023 17:53:46 } [PH] error: listen EADDRINUSE: address already in use :::5000
