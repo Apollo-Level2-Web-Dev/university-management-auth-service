@@ -1,0 +1,25 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/Users/fahimahammedfiroz/level2/university-management-auth-service/logs/winston/errors/.8b2faa68ccf968da36c1063ef1b46e8323e6df78-audit.json",
+    "files": [
+        {
+            "date": 1694432827282,
+            "name": "/Users/fahimahammedfiroz/level2/university-management-auth-service/logs/winston/errors/phu-2023-11-09-17-error.log",
+            "hash": "d592823cc2eb4b2d1e4e2e34ebadec22c8b096626e6319c24e21fd6102b3aa07"
+        },
+        {
+            "date": 1694433648148,
+            "name": "/Users/fahimahammedfiroz/level2/university-management-auth-service/logs/winston/errors/phu-2023-11-09-18-error.log",
+            "hash": "6cd8f76d3dd6fb1cd96629ce4df464483efbbb25af92c10a4ed3eebf882f62da"
+        },
+        {
+            "date": 1694523787410,
+            "name": "/Users/fahimahammedfiroz/level2/university-management-auth-service/logs/winston/errors/phu-2023-12-09-19-error.log",
+            "hash": "ad369bfd2493d807423e9d9c2d5383081b61c20f7dde56f888e27ef0adea33ae"
+        }
+    ],
+    "hashType": "sha256"
+}
