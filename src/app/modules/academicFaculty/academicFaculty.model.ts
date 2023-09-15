@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 import {
-  IAcademicFaculty,
   AcademicFacultyModel,
+  IAcademicFaculty,
 } from './academicFaculty.interfaces';
 
 const AcademicFacultySchema = new Schema<
@@ -14,6 +14,11 @@ const AcademicFacultySchema = new Schema<
       required: true,
       unique: true,
     },
+    syncId: {
+      type: String,
+      required: false,
+      unique: true
+    }
   },
   {
     timestamps: true,
