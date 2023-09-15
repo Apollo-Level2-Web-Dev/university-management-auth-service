@@ -1,0 +1,3 @@
+Thu Sep 14 2023 19:1:44 } [PH] error: Academic semester is already exist !
+Thu Sep 14 2023 19:5:4 } [PH] error: Academic semester is already exist !
+Thu Sep 14 2023 19:5:43 } [PH] error: AcademicSemester validation failed: year: Cast to Number failed for value "Fall" (type string) at path "year"
