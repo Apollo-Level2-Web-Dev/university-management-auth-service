@@ -48,6 +48,7 @@ const getAllFaculties = async (
   }
 
   // Filters needs $and to fullfill all the conditions
+  console.log(filtersData)
   if (Object.keys(filtersData).length) {
     andConditions.push({
       $and: Object.entries(filtersData).map(([field, value]) => ({
