@@ -59,6 +59,11 @@
             "date": 1694876701623,
             "name": "/Users/fahimahammedfiroz/level2/university-management-auth-service/logs/winston/successes/phu-2023-16-09-21-success.log",
             "hash": "08577d31181940b3c9405b436c052c4580fa3ce71dcbcbaf2984bbdc9d59a1bc"
+        },
+        {
+            "date": 1694957895745,
+            "name": "/Users/fahimahammedfiroz/level2/university-management-auth-service/logs/winston/successes/phu-2023-17-09-19-success.log",
+            "hash": "5cdd41b73ad5ef11fb432b64cdd950c9a01a6ce0f7bada9910ab34205100ac56"
         }
     ],
     "hashType": "sha256"
