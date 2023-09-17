@@ -64,6 +64,11 @@
             "date": 1694957895746,
             "name": "/Users/fahimahammedfiroz/level2/university-management-auth-service/logs/winston/errors/phu-2023-17-09-19-error.log",
             "hash": "e88873e68cf7ef1fbe3043c885202954dab6ddde7608c5124ab80f057737dd56"
+        },
+        {
+            "date": 1694959375684,
+            "name": "/Users/fahimahammedfiroz/level2/university-management-auth-service/logs/winston/errors/phu-2023-17-09-20-error.log",
+            "hash": "b2dd4a0b1a03f7754ca5faf775acfe1677441715cc0900bb55d4a534cf223bd2"
         }
     ],
     "hashType": "sha256"
