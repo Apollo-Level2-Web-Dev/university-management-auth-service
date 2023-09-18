@@ -6,7 +6,7 @@ const updateFacultyZodSchema = z.object({
       firstName: z.string().optional(),
       lastName: z.string().optional(),
       middleName: z.string().optional(),
-    }),
+    }).optional(),
     dateOfBirth: z.string().optional(),
     gender: z.string().optional(),
     bloodGroup: z.string().optional(),
