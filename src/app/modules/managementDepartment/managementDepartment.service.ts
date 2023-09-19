@@ -95,6 +95,7 @@ const updateDepartment = async (
 const deleteDepartment = async (
   id: string
 ): Promise<IManagementDepartment | null> => {
+  console.log(id)
   const result = await ManagementDepartment.findByIdAndDelete(id);
   return result;
 };

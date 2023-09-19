@@ -84,6 +84,16 @@
             "date": 1695042024499,
             "name": "/Users/fahimahammedfiroz/level2/university-management-auth-service/logs/winston/successes/phu-2023-18-09-19-success.log",
             "hash": "b36c774a5fab5198abd7032765a3a53651cefcb3484faf1571678135acca08f1"
+        },
+        {
+            "date": 1695120919306,
+            "name": "/Users/fahimahammedfiroz/level2/university-management-auth-service/logs/winston/successes/phu-2023-19-09-16-success.log",
+            "hash": "fce093287bfa7dee043cc0546a90bb8e5c73570f8f1f981eb7f2abf68c5a8bfd"
+        },
+        {
+            "date": 1695121219560,
+            "name": "/Users/fahimahammedfiroz/level2/university-management-auth-service/logs/winston/successes/phu-2023-19-09-17-success.log",
+            "hash": "ad04416fc5a8eca8cddfd202cd95e1fd7de30bdeb31d1d55e40420e4e93a68e2"
         }
     ],
     "hashType": "sha256"
