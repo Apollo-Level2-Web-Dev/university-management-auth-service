@@ -8,7 +8,7 @@ const initAcademicSemesterEvents = () => {
         const data: IAcademicSemesterCreatedEvent = JSON.parse(e);
 
         await AcademicSemesterService.createSemesterFromEvent(data);
-        //console.log(data);
+        console.log(data);
     });
 
     RedisClient.subscribe(EVENT_ACADEMIC_SEMESTER_UPDATED, async (e: string) => {

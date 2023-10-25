@@ -1,0 +1,3 @@
+Mon Oct 23 2023 15:24:22 } [PH] error: E11000 duplicate key error collection: auth_staging_db.academicfaculties index: title_1 dup key: { title: "Faculty of Science & Engineering" }
+Mon Oct 23 2023 15:40:55 } [PH] error: E11000 duplicate key error collection: test.academicfaculties index: title_1 dup key: { title: "Faculty of Science & Engineering" }
+Mon Oct 23 2023 15:42:46 } [PH] error: E11000 duplicate key error collection: test.academicdepartments index: title_1 dup key: { title: "Software Engineering" }
